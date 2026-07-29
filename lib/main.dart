@@ -10,8 +10,8 @@ import 'screens/app_shell.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Load environment variables from .env
-  await dotenv.load();
+  // Load environment variables from .env (optional)
+  await dotenv.load(isOptional: true);
 
   await Supabase.initialize(
     url: AppConfig.supabaseUrl,
