@@ -14,6 +14,7 @@ workflows:
         # REVENUECAT_API_KEY: your_key
       groups:
         - keystore_credentials
+        - env_vars
     triggering:
       events:
         - push
