@@ -41,8 +41,10 @@ class SubscriptionService {
       final package = offering.monthly;
       if (package == null) return false;
 
-      final result = await Purchases.purchasePackage(package);
-      _isPro = result.entitlements.active
+      final result = await Purchases.purchase(
+        PurchaseParams(package: package),
+      );
+      _isPro = result.customerInfo.entitlements.active
           .containsKey(AppConfig.proEntitlementId);
 
       if (_isPro) {
