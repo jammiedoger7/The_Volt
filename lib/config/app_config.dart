@@ -5,7 +5,7 @@ class AppConfig {
   static const String appTagline = 'AI-Powered Outfit Generator';
 
   static String _fromEnv(String key) =>
-      dotenv.env[key] ?? const String.fromEnvironment(key, defaultValue: '');
+      dotenv.env[key] ?? String.fromEnvironment(key, defaultValue: '');
 
   // Supabase
   static String get supabaseUrl => _fromEnv('SUPABASE_URL');
