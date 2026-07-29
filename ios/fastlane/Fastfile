@@ -1,0 +1,44 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and upload to TestFlight"
+  lane :beta do
+    build_app(
+      workspace: "ios/Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store",
+    )
+
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+    )
+  end
+
+  desc "Upload to App Store"
+  lane :release do
+    build_app(
+      workspace: "ios/Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store",
+    )
+
+    upload_to_app_store(
+      force: true,
+      skip_screenshots: true,
+      skip_metadata: false,
+    )
+  end
+
+  desc "Run tests"
+  lane :test do
+    scan(
+      workspace: "ios/Runner.xcworkspace",
+      scheme: "Runner",
+    )
+  end
+
+  desc "Sync certificates and profiles"
+  lane :certificates do
+    match(type: "appstore")
+  end
+end
