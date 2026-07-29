@@ -42,7 +42,7 @@ class SubscriptionService {
       if (package == null) return false;
 
       final result = await Purchases.purchase(
-        PurchaseParams(package: package),
+        PurchaseParams.package(package),
       );
       _isPro = result.customerInfo.entitlements.active
           .containsKey(AppConfig.proEntitlementId);
